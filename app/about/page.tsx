@@ -201,33 +201,27 @@ export default function AboutPage() {
               विद्यार्थी, युवक, महिला आणि पालकांच्या विशिष्ट गरजांनुसार आमचे खास मार्गदर्शन सत्रे.
             </p>
 
-            {/* Mobile Horizontal Scroll Indicator */}
-            <div className="flex items-center justify-center gap-2 text-[#F4A16C] text-[11px] font-bold tracking-widest mt-6 lg:hidden animate-pulse border border-[#F4A16C]/20 bg-[#F4A16C]/5 py-1.5 px-4 rounded-full w-fit mx-auto">
-              <MoveRight size={14} /> पुढे पाहण्यासाठी स्वाइप करा (SWIPE)
-            </div>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-6 md:gap-8 mt-6 lg:mt-0">
              {/* Audience Tabs */}
-             <div className="w-full lg:w-1/3 flex flex-row lg:flex-col gap-3 overflow-x-auto pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
-                <div className="w-2 shrink-0 lg:hidden" />
+             <div className="w-full lg:w-1/3 flex flex-wrap lg:flex-col gap-2 md:gap-3 justify-center lg:justify-start">
                 {audiences.map((aud) => (
                   <button
                     key={aud.id}
                     onClick={() => setActiveAudience(aud.id)}
-                    className={`flex items-center gap-3 md:gap-4 p-4 md:p-5 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-300 text-left shrink-0 min-w-[240px] md:min-w-0 snap-center border ${
+                    className={`flex items-center gap-2 md:gap-4 py-2 px-4 md:p-5 rounded-full md:rounded-[2rem] transition-all duration-300 text-left border ${
                       activeAudience === aud.id 
-                        ? 'bg-[#1a235c] text-white shadow-xl shadow-blue-900/20 scale-[1.02] border-[#1a235c]' 
-                        : 'bg-white text-slate-600 border-slate-100 hover:bg-slate-50 hover:shadow-md'
+                        ? 'bg-[#1a235c] text-white shadow-md shadow-blue-900/20 md:scale-[1.02] border-[#1a235c]' 
+                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:shadow-sm'
                     }`}
                   >
-                    <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shrink-0 ${activeAudience === aud.id ? 'bg-white/20 text-white' : 'bg-blue-50 text-[#1a235c] shadow-sm'}`}>
-                      <aud.icon className="w-5 h-5 md:w-6 md:h-6" />
+                    <div className={`w-7 h-7 md:w-12 md:h-12 rounded-full flex items-center justify-center shrink-0 ${activeAudience === aud.id ? 'bg-white/20 text-white' : 'bg-blue-50 text-[#1a235c] shadow-sm'}`}>
+                      <aud.icon className="w-3.5 h-3.5 md:w-6 md:h-6" />
                     </div>
-                    <span className="font-black text-sm md:text-base uppercase tracking-widest">{aud.title}</span>
+                    <span className="font-bold md:font-black text-xs md:text-base uppercase tracking-wider md:tracking-widest">{aud.title}</span>
                   </button>
                 ))}
-                <div className="w-2 shrink-0 lg:hidden" />
              </div>
 
              {/* Audience Content */}

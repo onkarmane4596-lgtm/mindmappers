@@ -32,7 +32,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full transition-all duration-300 shadow-sm shadow-[#1a235c]/5 flex flex-col">
-      <div className="w-full bg-white/80 backdrop-blur-lg border-b border-[#1a235c]/5 border-t-4 border-t-[#F4A16C]">
+      <div className="relative z-50 w-full bg-white/80 backdrop-blur-lg border-b border-[#1a235c]/5 border-t-4 border-t-[#F4A16C]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 sm:h-24 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
@@ -205,7 +205,7 @@ export function Header() {
       </div>
 
       {/* Live Highlights Marquee Bar */}
-      <div className="w-full bg-gradient-to-r from-[#1a235c]/95 to-black/95 backdrop-blur-xl border-b border-white/10 overflow-hidden flex relative">
+      <div className="relative z-40 w-full bg-gradient-to-r from-[#1a235c]/95 to-black/95 backdrop-blur-xl border-b border-white/10 overflow-hidden flex">
         <div className="flex animate-marquee whitespace-nowrap py-1.5 sm:py-2 text-white/90 text-[11px] sm:text-[13px] font-bold tracking-widest hover:[animation-play-state:paused] cursor-default uppercase">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex gap-8 sm:gap-16 px-4 sm:px-8 items-center min-w-max">

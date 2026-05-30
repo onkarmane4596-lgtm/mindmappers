@@ -79,9 +79,23 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-slate-100 pt-8 mt-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-              &copy; {currentYear} MindMappers. All rights reserved.
-            </p>
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                &copy; {currentYear} MindMappers. All rights reserved.
+              </p>
+              <span className="hidden md:inline text-slate-300">|</span>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                Powered by:{' '}
+                <a 
+                  href="https://wa.me/918830610158?text=Hello%20TECHSARTHI%20Team!%20%F0%9F%8C%9F%0A%0AI%20am%20interested%20in%20your%20services." 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#F4A16C] hover:text-[#e67e3a] transition-colors"
+                >
+                  TECHSARTHI
+                </a>
+              </p>
+            </div>
             <div className="flex items-center gap-4">
               <a href="https://www.facebook.com/people/Mindmapper-Career-Counselling/61575185248722/?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm" aria-label="Facebook">
                 <Facebook size={16} />
