@@ -41,7 +41,7 @@ export default function IQEQTestPage() {
         </div>
         
         {/* Overlays */}
-        <div className="absolute inset-0 bg-[#1a235c]/85 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-[#1a235c]/90" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a235c] via-[#1a235c]/60 to-[#1a235c]/30" />
         <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#F4A16C]/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
@@ -371,7 +371,7 @@ export default function IQEQTestPage() {
 
              {/* Text Content */}
              <div className="w-full md:w-3/5 text-center md:text-left relative z-20 pb-12 md:pb-0">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white font-bold text-xs tracking-widest uppercase mb-8 shadow-sm">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 border border-white/20 text-white font-bold text-xs tracking-widest uppercase mb-8 shadow-sm">
                    <span className="w-2 h-2 rounded-full bg-[#F4A16C] animate-pulse" />
                    <span>Identify Potential Today</span>
                 </div>

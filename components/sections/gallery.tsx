@@ -126,7 +126,7 @@ export function SessionsGallery() {
   };
 
   return (
-    <section className="py-10 md:py-16 relative bg-[#f8fafc] overflow-hidden">
+    <section className="py-10 md:py-16 relative bg-[#f8fafc] overflow-hidden" style={{ contain: 'paint' }}>
       {/* Subtle Background Accents */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#1a235c]/5 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/4 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#F4A16C]/5 rounded-full blur-[80px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
@@ -152,7 +152,7 @@ export function SessionsGallery() {
           className={
             isExpanded 
               ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 auto-rows-[130px] md:auto-rows-[250px] transition-all duration-700 ease-in-out" 
-              : "flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-8 pb-10 no-scrollbar scroll-smooth transition-all duration-700 ease-in-out px-4 -mx-4 md:px-0 md:mx-0"
+              : "flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-8 pb-10 no-scrollbar scroll-smooth transition-all duration-700 ease-in-out w-full max-w-full"
           }
         >
           {galleryImages.map((image, index) => {
@@ -195,7 +195,7 @@ export function SessionsGallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a235c]/90 via-[#1a235c]/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 
                 {/* Expand Icon */}
-                <div className="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 shadow-lg border border-white/30">
+                <div className="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-[#1a235c] flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 shadow-lg border border-white/30">
                   <Maximize2 className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
 
@@ -232,12 +232,12 @@ export function SessionsGallery() {
       {/* Lightbox Modal */}
       {selectedImage !== null && (
         <div 
-          className="fixed inset-0 z-[100] bg-[#1a235c]/95 backdrop-blur-md flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-slate-950/95 flex items-center justify-center"
           onClick={closeLightbox}
         >
           {/* Close Button */}
           <button 
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors border border-white/20 z-50 backdrop-blur-md"
+            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors border border-white/20 z-50"
             onClick={closeLightbox}
           >
             <X className="w-6 h-6" />
@@ -245,14 +245,14 @@ export function SessionsGallery() {
 
           {/* Navigation Buttons */}
           <button 
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors border border-white/20 z-50 backdrop-blur-md"
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors border border-white/20 z-50"
             onClick={prevImage}
           >
             <ChevronLeft className="w-8 h-8 md:w-10 md:h-10 pr-1" />
           </button>
 
           <button 
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors border border-white/20 z-50 backdrop-blur-md"
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors border border-white/20 z-50"
             onClick={nextImage}
           >
             <ChevronRight className="w-8 h-8 md:w-10 md:h-10 pl-1" />
@@ -266,11 +266,11 @@ export function SessionsGallery() {
             <div className="relative w-full flex flex-col items-center justify-center gap-6">
               <img 
                 src={galleryImages[selectedImage].url} 
-                alt={galleryImages[selectedImage].title}
+                alt={galleryImages[selectedImage].title} 
                 className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl border-4 border-white/10"
               />
               
-              <div className="text-center bg-white/10 px-6 py-4 rounded-[1.5rem] backdrop-blur-md border border-white/20 max-w-xl w-[90%]">
+              <div className="text-center bg-[#1a235c] px-6 py-4 rounded-[1.5rem] border border-white/20 max-w-xl w-[90%] shadow-2xl">
                 <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-1 line-clamp-2">
                   {galleryImages[selectedImage].title}
                 </h3>
@@ -281,7 +281,7 @@ export function SessionsGallery() {
               </div>
 
               {/* Image Counter */}
-              <div className="text-white/40 font-bold tracking-widest text-xs uppercase bg-white/5 px-4 py-2 rounded-full border border-white/10">
+              <div className="text-white/70 font-bold tracking-widest text-xs uppercase bg-white/10 px-4 py-2 rounded-full border border-white/10">
                 {selectedImage + 1} / {galleryImages.length}
               </div>
             </div>

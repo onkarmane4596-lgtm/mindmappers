@@ -72,9 +72,9 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
           />
         </div>
         
-        {/* Advanced Overlays */}
-        <div className="absolute inset-0 bg-[#1a235c]/85 backdrop-blur-[2px] z-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a235c] via-[#1a235c]/60 to-[#1a235c]/30 z-0" />
+        {/* Advanced Overlays (Clean Solid, NO Glassmorphism) */}
+        <div className="absolute inset-0 bg-[#1a235c]/90 z-0" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1a235c] via-[#1a235c]/70 to-[#1a235c]/40 z-0" />
         <div className="absolute inset-0 opacity-[0.05] z-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         
         {/* Glowing Decorative Orbs */}
@@ -82,7 +82,7 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none z-0" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#F4A16C] font-black text-[10px] sm:text-xs tracking-widest uppercase mb-4 shadow-xl animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/20 text-[#F4A16C] font-black text-[10px] sm:text-xs tracking-widest uppercase mb-4 shadow-xl animate-fade-in">
             <IconComponent size={14} className="shrink-0" />
             <span>Our Specialized Program</span>
           </div>
@@ -188,7 +188,7 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
                 
                 <div className="relative z-10 space-y-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-white/15 border border-white/10 flex items-center justify-center">
                       <Activity size={20} className="text-[#F4A16C]" />
                     </div>
                     <div>

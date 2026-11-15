@@ -33,7 +33,7 @@ export function FloatingSocials() {
   return (
     <>
       {/* Left side vertical social bar (hidden on small screens, shown on md and up) */}
-      <div className="fixed left-0 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-2 p-2 bg-white/80 backdrop-blur-md rounded-r-2xl shadow-[4px_0_24px_rgba(0,0,0,0.06)] border border-slate-100 border-l-0">
+      <div className="fixed left-0 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-2 p-2 bg-white rounded-r-2xl shadow-md border border-slate-200 border-l-0">
         <a href="https://www.facebook.com/people/Mindmapper-Career-Counselling/61575185248722/?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-xl text-slate-400 hover:bg-[#1877F2] hover:text-white transition-all duration-300" aria-label="Facebook">
           <Facebook size={18} />
         </a>
@@ -94,7 +94,7 @@ export function FloatingSocials() {
           <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20"></span>
           
           <MessageCircle size={32} />
-          <span className="absolute right-full mr-4 bg-gray-900 text-white font-medium text-sm px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-xl">
+          <span className="hidden md:block absolute right-full mr-4 bg-gray-900 text-white font-medium text-sm px-4 py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-xl">
             Book a Session
             <div className="absolute top-1/2 -right-1.5 -translate-y-1/2 border-[6px] border-transparent border-l-gray-900"></div>
           </span>

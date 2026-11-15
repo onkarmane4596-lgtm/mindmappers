@@ -36,7 +36,7 @@ export function ActionSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-10 md:py-16 bg-white relative overflow-hidden flex flex-col items-center">
+    <section className="py-10 md:py-16 bg-white relative overflow-hidden flex flex-col items-center w-full max-w-full" style={{ contain: 'paint' }}>
       {/* Subtle Background Accents */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1a235c]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#F4A16C]/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
@@ -121,7 +121,7 @@ export function ActionSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-full h-14 px-10 text-[17px] border-2 border-white/20 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-[#1a235c] font-black transition-all hover:-translate-y-1 uppercase tracking-widest text-sm"
+                className="rounded-full h-14 px-10 text-[17px] border-2 border-white/20 bg-white/10 text-white hover:bg-white hover:text-[#1a235c] font-black transition-all hover:-translate-y-1 uppercase tracking-widest text-sm"
                 asChild
               >
                 <a href="https://wa.me/919822258300?text=Hello%20MindMappers%20Team!%20%F0%9F%8C%9F%0A%0AI%20would%20like%20to%20chat%20with%20a%20counselor." target="_blank" rel="noopener noreferrer">

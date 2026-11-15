@@ -65,7 +65,7 @@ export function TrustSection() {
   }, []);
 
   return (
-    <section className="py-10 md:py-16 bg-white relative overflow-hidden">
+    <section className="py-10 md:py-16 bg-white relative overflow-hidden w-full max-w-full" style={{ contain: 'paint' }}>
       {/* Subtle Background Accents */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1a235c]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#F4A16C]/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />

@@ -84,7 +84,7 @@ export default function AboutPage() {
         </div>
         
         {/* Overlays */}
-        <div className="absolute inset-0 bg-[#1a235c]/85 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-[#1a235c]/90" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a235c] via-[#1a235c]/60 to-[#1a235c]/30" />
         <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#F4A16C]/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
@@ -182,7 +182,7 @@ export default function AboutPage() {
           <h2 className="text-2xl md:text-4xl font-black mb-8 md:mb-10 tracking-tight">मार्गदर्शनाचे मुख्य विषय</h2>
           <div className="flex flex-wrap justify-center gap-2.5 md:gap-4 max-w-4xl mx-auto">
             {topics.map((topic, idx) => (
-              <span key={idx} className="px-4 py-2 md:px-6 md:py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#1a235c] transition-colors cursor-default shadow-lg">
+              <span key={idx} className="px-4 py-2 md:px-6 md:py-3 rounded-full bg-white/15 border border-white/20 font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-[#1a235c] transition-colors cursor-default shadow-lg">
                 {topic}
               </span>
             ))}

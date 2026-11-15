@@ -117,7 +117,7 @@ export function NewsSection() {
               </div>
 
                 {/* Read More Overlay Icon */}
-              <div className="absolute top-4 right-4 z-20 w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+              <div className="absolute top-4 right-4 z-20 w-10 h-10 rounded-2xl bg-[#1a235c] border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
                  <Maximize2 className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
               </div>
 
@@ -161,12 +161,12 @@ export function NewsSection() {
       {/* Lightbox Modal */}
       {selectedImage !== null && (
         <div 
-          className="fixed inset-0 z-[100] bg-[#1a235c]/95 backdrop-blur-md flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-slate-950/95 flex items-center justify-center"
           onClick={closeLightbox}
         >
           {/* Close Button */}
           <button 
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors border border-white/20 z-50 backdrop-blur-md"
+            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors border border-white/20 z-50"
             onClick={closeLightbox}
           >
             <X className="w-6 h-6" />
@@ -174,14 +174,14 @@ export function NewsSection() {
 
           {/* Navigation Buttons */}
           <button 
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors border border-white/20 z-50 backdrop-blur-md"
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors border border-white/20 z-50"
             onClick={prevImage}
           >
             <ChevronLeft className="w-8 h-8 md:w-10 md:h-10 pr-1" />
           </button>
 
           <button 
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors border border-white/20 z-50 backdrop-blur-md"
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors border border-white/20 z-50"
             onClick={nextImage}
           >
             <ChevronRight className="w-8 h-8 md:w-10 md:h-10 pl-1" />
@@ -199,7 +199,7 @@ export function NewsSection() {
                 className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl border-4 border-white/10"
               />
               
-              <div className="text-center bg-white/10 px-6 py-4 rounded-[1.5rem] backdrop-blur-md border border-white/20 max-w-xl w-[90%]">
+              <div className="text-center bg-[#1a235c] px-6 py-4 rounded-[1.5rem] border border-white/20 max-w-xl w-[90%] shadow-2xl">
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-1 line-clamp-2">
                   {newsArticles[selectedImage].title}
                 </h3>
@@ -209,7 +209,7 @@ export function NewsSection() {
               </div>
 
               {/* Image Counter */}
-              <div className="text-white/40 font-bold tracking-widest text-xs uppercase bg-white/5 px-4 py-2 rounded-full border border-white/10">
+              <div className="text-white/70 font-bold tracking-widest text-xs uppercase bg-white/10 px-4 py-2 rounded-full border border-white/10">
                 {selectedImage + 1} / {newsArticles.length}
               </div>
             </div>

@@ -128,11 +128,14 @@ export default function FounderPage() {
 
             <div className="w-full lg:w-3/5 text-center lg:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 tracking-tight leading-tight">
-                Mr. Dinesh D. <span className="text-[#F4A16C]">Tathe</span>
+                Prof. Dinesh <span className="text-[#F4A16C]">Tathe</span>
               </h1>
               <div className="space-y-4 mb-10">
                 <p className="text-2xl md:text-3xl font-bold text-white/90 leading-tight">
-                  Director, Mindmappers career counseling center.
+                  Founder & Director, MindMappers® Career Counselling Centre
+                </p>
+                <p className="text-sm md:text-base text-white/70 font-medium">
+                  Career guidance, student interaction, personality development and meaningful counselling for students, parents and institutions.
                 </p>
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
                   <span className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/20 text-white/80 font-medium">

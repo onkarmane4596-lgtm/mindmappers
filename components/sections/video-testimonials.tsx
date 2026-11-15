@@ -131,7 +131,7 @@ export function VideoTestimonialsSection() {
   };
 
   return (
-    <section className="py-10 md:py-16 bg-white overflow-hidden relative">
+    <section className="py-10 md:py-16 bg-white overflow-hidden relative" style={{ contain: 'paint' }}>
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#1a235c]/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-[#F4A16C]/5 rounded-full blur-[80px] pointer-events-none" />
 
@@ -152,7 +152,7 @@ export function VideoTestimonialsSection() {
           className={
             isExpanded 
               ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 auto-rows-[160px] md:auto-rows-[300px] transition-all duration-700 ease-in-out" 
-              : "flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-8 pb-10 no-scrollbar scroll-smooth transition-all duration-700 ease-in-out px-4 -mx-4 md:px-0 md:mx-0"
+              : "flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-8 pb-10 no-scrollbar scroll-smooth transition-all duration-700 ease-in-out w-full max-w-full"
           }
         >
           {testimonials.map((testimonial) => {
@@ -189,7 +189,7 @@ export function VideoTestimonialsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a235c]/90 via-[#1a235c]/30 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                 
                 <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${playingId === testimonial.id ? 'opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100' : 'opacity-100 scale-100'}`}>
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-20 md:h-20 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center text-white transform transition-all duration-500 group-hover:scale-110 shadow-[0_0_30px_rgba(255,255,255,0.2)] border border-white/30">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-20 md:h-20 rounded-full bg-white/20 flex items-center justify-center text-white transform transition-all duration-500 group-hover:scale-110 shadow-xl border border-white/40">
                     <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-[#1a235c] shadow-lg">
                       {playingId === testimonial.id ? (
                         <Pause className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7" fill="currentColor" />
@@ -209,7 +209,7 @@ export function VideoTestimonialsSection() {
 
                 <button 
                   onClick={toggleMute}
-                  className={`absolute top-3 right-3 sm:top-4 sm:right-4 md:top-8 md:right-8 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-300 hover:bg-white/20 active:scale-95 ${playingId === testimonial.id || 'opacity-0 group-hover:opacity-100'}`}
+                  className={`absolute top-3 right-3 sm:top-4 sm:right-4 md:top-8 md:right-8 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-white transition-all duration-300 hover:bg-slate-900 active:scale-95 ${playingId === testimonial.id || 'opacity-0 group-hover:opacity-100'}`}
                 >
                   {isMuted ? <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" /> : <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />}
                 </button>

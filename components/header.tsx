@@ -2,221 +2,489 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, Sparkles, GraduationCap, Target, Lightbulb } from 'lucide-react';
-import { useState } from 'react';
+import { 
+  Menu, 
+  X, 
+  ChevronDown, 
+  Sparkles, 
+  GraduationCap, 
+  Building2, 
+  FileText, 
+  Phone,
+  MessageCircle,
+  ArrowRight,
+  User,
+  CheckCircle2,
+  Calendar
+} from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { EnquiryModal } from '@/components/enquiry-modal';
 
-const navigationLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About Us' },
-  { href: '/services', label: 'Services' },
-  { href: '/iq-eq-test', label: 'IQ and EQ Test' },
-  { href: '/student-report', label: 'Student Report' },
-  { href: '/contact', label: 'Contact US' },
-];
-
-const servicesList = [
-  { href: '/services/student-career-counseling', label: 'Student Career Counseling' },
-  { href: '/services/iq-eq-testing', label: 'IQ & EQ Testing' },
+const careerDropdownLinks = [
+  { href: '/services', label: 'All Counselling Services' },
+  { href: '/iq-eq-test', label: 'IQ & EQ Assessment' },
+  { href: '/student-report', label: 'Personalised Reports' },
+  { href: '/services/student-career-counseling', label: 'Student Career Guidance' },
   { href: '/services/personality-development', label: 'Personality Development' },
   { href: '/services/parents-counseling', label: 'Parents Counseling' },
-  { href: '/services/cyber-parenting', label: 'Cyber Parenting' },
-  { href: '/services/anger-management', label: 'Anger Management' },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isCareerOpen, setIsCareerOpen] = useState(false);
+  const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
+
+  // Close mobile drawer on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [isOpen]);
+
+  const handleWhatsAppChat = () => {
+    const msg = 'Hello MindMappers Team! 🌟 I would like to enquire about your career counselling and corporate training services.';
+    window.open(`https://wa.me/919822258300?text=${encodeURIComponent(msg)}`, '_blank');
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-300 shadow-sm shadow-[#1a235c]/5 flex flex-col">
-      <div className="relative z-50 w-full bg-white/80 backdrop-blur-lg border-b border-[#1a235c]/5 border-t-4 border-t-[#F4A16C]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 sm:h-24 items-center justify-between gap-2 sm:gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-4 shrink-0 group">
-            <div className="relative w-12 h-12 sm:w-16 sm:h-16 group-hover:scale-105 transition-transform duration-300">
-              <Image 
-                src="/logo/LOGO MINDMAPPERS.png" 
-                alt="MindMappers Logo" 
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <span className="font-black text-xl sm:text-2xl tracking-tight flex items-center">
-              <span className="text-[#1a235c]">Mind</span>
-              <span className="text-[#F4A16C]">Mappers</span>
-            </span>
-          </Link>
+    <>
+      <header className="sticky top-0 z-40 w-full bg-white shadow-xs">
+        {/* Main Solid White Navigation Bar */}
+        <div className="w-full bg-white border-b border-slate-200 border-t-[3px] border-t-[#F4A16C]">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div className="flex h-16 sm:h-20 items-center justify-between gap-2 sm:gap-4">
+              
+              {/* Logo (Responsive, Never forces overflow) */}
+              <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink min-w-0 group py-1">
+                <div className="relative w-8 h-8 sm:w-11 sm:h-11 shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <Image 
+                    src="/logo/LOGO MINDMAPPERS.png" 
+                    alt="MindMappers Logo" 
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="font-black text-[15px] sm:text-xl md:text-2xl tracking-tight leading-none truncate flex items-center">
+                    <span className="text-[#1a235c]">Mind</span>
+                    <span className="text-[#F4A16C]">Mappers</span>
+                    <span className="text-[9px] text-[#1a235c] align-super font-bold ml-0.5">®</span>
+                  </span>
+                  <span className="text-[7.5px] sm:text-[9px] md:text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-0.5 sm:mt-1 truncate">
+                    Career Counselling & Corporate
+                  </span>
+                </div>
+              </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center h-full gap-6 lg:gap-8">
-            {navigationLinks.map((link) => {
-              if (link.href === '/services') {
-                return (
-                  <div key={link.href} className="relative group h-full flex items-center">
-                    <Link
-                      href="/services"
-                      className={`text-[13px] lg:text-[14px] font-bold uppercase tracking-widest transition-all duration-300 relative flex items-center gap-1 ${
-                        pathname.startsWith('/services') ? 'text-[#1a235c]' : 'text-slate-500 hover:text-[#1a235c]'
-                      }`}
-                    >
-                      {link.label}
-                      <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180 text-slate-400 group-hover:text-[#1a235c]" />
-                      <span className={`absolute -bottom-1 left-0 w-full h-[3px] rounded-full bg-[#F4A16C] transition-all duration-300 origin-left ${
-                        pathname.startsWith('/services') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                      }`} />
-                    </Link>
-
-                    {/* Dropdown Menu */}
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-64 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-blue-900/10 border border-slate-100/50 py-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
-                      {servicesList.map((service) => (
-                        <Link
-                          key={service.href}
-                          href={service.href}
-                          className={`block px-5 py-2.5 text-xs lg:text-[13px] font-bold uppercase tracking-wider transition-colors duration-200 border-l-2 ${
-                            pathname === service.href
-                              ? 'border-[#F4A16C] bg-slate-50 text-[#1a235c]'
-                              : 'border-transparent text-slate-600 hover:text-[#1a235c] hover:bg-slate-50/50 hover:border-slate-200'
-                          }`}
-                        >
-                          {service.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                );
-              }
-
-              return (
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex items-center h-full gap-5 xl:gap-7">
+                {/* Home */}
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-[13px] lg:text-[14px] font-bold uppercase tracking-widest transition-all duration-300 relative group flex-shrink-0 ${
-                    pathname === link.href ? 'text-[#1a235c]' : 'text-slate-500 hover:text-[#1a235c]'
+                  href="/"
+                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 ${
+                    pathname === '/' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
                   }`}
                 >
-                  {link.label}
-                  <span className={`absolute -bottom-1 left-0 w-full h-[3px] rounded-full bg-[#F4A16C] transition-all duration-300 origin-left ${
-                    pathname === link.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  Home
+                  <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#F4A16C] transition-all duration-200 ${
+                    pathname === '/' ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
                   }`} />
                 </Link>
-              );
-            })}
-          </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-4 shrink-0">
-            <div className="group relative inline-flex items-center justify-center p-[1.5px] rounded-full overflow-hidden shadow-xl shadow-[#1a235c]/10 transition-transform hover:scale-105 active:scale-95 cursor-pointer">
-              <div className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,#F4A16C,transparent,#F4A16C)] animate-[spin_6s_linear_infinite]" />
-              <a href="https://wa.me/919822258300?text=Hello%20MindMappers%20Team!%20%F0%9F%8C%9F%0A%0AI%20would%20like%20to%20book%20a%20session." target="_blank" rel="noopener noreferrer" className="relative flex items-center bg-[#1a235c] rounded-full px-5 py-2 border border-[#1a235c]/50 hover:bg-[#3D57C5] transition-colors">
-                <span className="text-white font-black tracking-widest uppercase text-xs">
+                {/* Career Counselling Dropdown */}
+                <div className="relative group h-full flex items-center">
+                  <Link
+                    href="/services"
+                    className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative flex items-center gap-1 py-2 ${
+                      pathname.startsWith('/services') || pathname === '/iq-eq-test' || pathname === '/student-report'
+                        ? 'text-[#1a235c]' 
+                        : 'text-slate-600 hover:text-[#1a235c]'
+                    }`}
+                  >
+                    Career Counselling
+                    <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180 text-slate-400 group-hover:text-[#1a235c]" />
+                    <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#F4A16C] transition-all duration-200 ${
+                      pathname.startsWith('/services') || pathname === '/iq-eq-test' || pathname === '/student-report'
+                        ? 'scale-x-100' 
+                        : 'scale-x-0 group-hover:scale-x-100'
+                    }`} />
+                  </Link>
+
+                  {/* Dropdown Menu */}
+                  <div className="absolute left-0 top-full w-64 bg-white rounded-2xl shadow-2xl border border-slate-200 py-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
+                    {careerDropdownLinks.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors border-l-2 ${
+                          pathname === item.href
+                            ? 'border-[#F4A16C] bg-slate-50 text-[#1a235c]'
+                            : 'border-transparent text-slate-600 hover:text-[#1a235c] hover:bg-slate-50'
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Corporate Training */}
+                <Link
+                  href="/corporate-training"
+                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 flex items-center gap-1.5 ${
+                    pathname === '/corporate-training' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
+                  }`}
+                >
+                  <span>Corporate Training</span>
+                  <span className="bg-[#1a235c]/10 text-[#1a235c] text-[9px] font-black uppercase px-2 py-0.5 rounded-full">
+                    Vertical
+                  </span>
+                  <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#1a235c] transition-all duration-200 ${
+                    pathname === '/corporate-training' ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
+                  }`} />
+                </Link>
+
+                {/* Institutions */}
+                <Link
+                  href="/institutions"
+                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 ${
+                    pathname === '/institutions' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
+                  }`}
+                >
+                  Institutions
+                  <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#F4A16C] transition-all duration-200 ${
+                    pathname === '/institutions' ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
+                  }`} />
+                </Link>
+
+                {/* Brochures View & Download */}
+                <Link
+                  href="/brochures"
+                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 flex items-center gap-1 ${
+                    pathname === '/brochures' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
+                  }`}
+                >
+                  <FileText size={14} className="text-[#F4A16C]" />
+                  Brochures
+                  <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#F4A16C] transition-all duration-200 ${
+                    pathname === '/brochures' ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
+                  }`} />
+                </Link>
+
+                {/* About Us */}
+                <Link
+                  href="/about"
+                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 ${
+                    pathname === '/about' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
+                  }`}
+                >
+                  About
+                  <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#F4A16C] transition-all duration-200 ${
+                    pathname === '/about' ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
+                  }`} />
+                </Link>
+
+                {/* Contact */}
+                <Link
+                  href="/contact"
+                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 ${
+                    pathname === '/contact' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
+                  }`}
+                >
+                  Contact
+                  <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#F4A16C] transition-all duration-200 ${
+                    pathname === '/contact' ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
+                  }`} />
+                </Link>
+              </nav>
+
+              {/* Desktop CTAs (WhatsApp Connected) */}
+              <div className="hidden lg:flex items-center gap-3 shrink-0">
+                <Button 
+                  onClick={handleWhatsAppChat}
+                  className="h-10 px-4 rounded-full bg-[#25D366] hover:bg-[#1fb855] text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-1.5"
+                >
+                  <MessageCircle size={15} /> WhatsApp
+                </Button>
+                <Button 
+                  onClick={() => setEnquiryModalOpen(true)}
+                  className="h-10 px-5 rounded-full bg-[#1a235c] hover:bg-[#3D57C5] text-white font-bold text-xs uppercase tracking-wider shadow-sm"
+                >
                   Book Session
+                </Button>
+              </div>
+
+              {/* Mobile Header Actions (Clean, Thumb-Friendly, Never Forces Overflow) */}
+              <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden shrink-0">
+                <Button 
+                  onClick={handleWhatsAppChat}
+                  size="sm"
+                  className="h-8 px-2.5 sm:px-3 rounded-full bg-[#25D366] hover:bg-[#1fb855] text-white text-[10px] sm:text-[11px] font-black uppercase flex items-center gap-1 shadow-xs"
+                  aria-label="Chat on WhatsApp"
+                >
+                  <MessageCircle size={13} className="shrink-0" />
+                  <span>WhatsApp</span>
+                </Button>
+                <button
+                  className="p-1.5 rounded-xl text-[#1a235c] hover:bg-slate-100 active:bg-slate-200 transition-colors flex items-center justify-center shrink-0 w-9 h-9 border border-slate-200"
+                  onClick={() => setIsOpen(!isOpen)}
+                  aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+                  aria-expanded={isOpen}
+                >
+                  {isOpen ? <X size={20} /> : <Menu size={20} />}
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* Live Marquee Bar (Strictly Contained, CAN NEVER Blow Out Layout) */}
+        <div 
+          className="w-full bg-[#1a235c] text-white border-b border-white/10 select-none overflow-hidden"
+          style={{ contain: 'paint' }}
+        >
+          <div className="flex animate-marquee whitespace-nowrap py-1 sm:py-1.5 text-[10px] sm:text-[12px] font-bold tracking-wider hover:[animation-play-state:paused] cursor-default uppercase">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex gap-6 sm:gap-14 px-3 sm:px-8 items-center shrink-0">
+                <span className="flex items-center gap-1.5"><Sparkles size={12} className="text-[#F4A16C] shrink-0"/> MindMappers®: Discover Potential. Design the Right Future.</span>
+                <span className="flex items-center gap-1.5"><GraduationCap size={12} className="text-[#F4A16C] shrink-0"/> Career Guidance in Pune • Satara • Chh. Sambhajinagar • Nanded</span>
+                <span className="flex items-center gap-1.5"><Building2 size={12} className="text-amber-400 shrink-0"/> Corporate Training: Build Better Minds. Transform Workplaces.</span>
+                <span className="flex items-center gap-1.5"><FileText size={12} className="text-[#F4A16C] shrink-0"/> Official 2026 Brochures Available For Instant Download</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Drawer (Dedicated Full-Screen Viewport Overlay, Outside of Sticky Header) */}
+      {isOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 z-50 bg-white flex flex-col justify-between overflow-hidden animate-in fade-in duration-200"
+          style={{ height: '100dvh', width: '100vw' }}
+        >
+          {/* Mobile Drawer Top Header Bar */}
+          <div className="h-16 px-4 flex items-center justify-between border-b border-slate-200 bg-white shrink-0">
+            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+              <div className="relative w-8 h-8 shrink-0">
+                <Image 
+                  src="/logo/LOGO MINDMAPPERS.png" 
+                  alt="MindMappers Logo" 
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-black text-base text-[#1a235c] leading-none">
+                  Mind<span className="text-[#F4A16C]">Mappers</span><span className="text-[9px] align-super">®</span>
                 </span>
-              </a>
+                <span className="text-[8px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">
+                  Career Counselling & Corporate
+                </span>
+              </div>
+            </Link>
+
+            <div className="flex items-center gap-2">
+              <Button 
+                onClick={handleWhatsAppChat}
+                size="sm"
+                className="h-8 px-2.5 rounded-full bg-[#25D366] text-white text-[10px] font-black uppercase flex items-center gap-1 shadow-xs"
+              >
+                <MessageCircle size={12} /> WhatsApp
+              </Button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors border border-slate-200"
+                aria-label="Close navigation menu"
+              >
+                <X size={20} />
+              </button>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-xl text-[#1F2F78] hover:bg-[#1F2F78]/5 transition-colors border border-transparent hover:border-[#1F2F78]/10"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+          {/* Scrollable Navigation Area */}
+          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1 divide-y divide-slate-100 overscroll-contain">
+            
+            {/* Primary Nav Links */}
+            <div className="space-y-1 pb-3">
+              <Link
+                href="/"
+                className={`flex items-center justify-between text-sm font-bold py-2.5 px-3.5 rounded-xl transition-colors ${
+                  pathname === '/' ? 'bg-blue-50 text-[#1a235c]' : 'text-slate-800 hover:bg-slate-50'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                <span>Home</span>
+                <ArrowRight size={14} className="text-slate-400" />
+              </Link>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <nav className="md:hidden border-t border-gray-100 py-6 animate-in slide-in-from-top-4 duration-300 absolute left-0 w-full bg-white/95 backdrop-blur-xl px-4 shadow-2xl">
-            <div className="flex flex-col gap-3">
-              {navigationLinks.map((link) => {
-                if (link.href === '/services') {
-                  return (
-                    <div key={link.href} className="flex flex-col gap-1">
-                      <button
-                        onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                        className={`w-full flex items-center justify-between text-[15px] font-bold py-3 px-4 rounded-xl transition-all text-left ${
-                          pathname.startsWith('/services')
-                            ? 'bg-gradient-to-br from-[#F4A16C]/10 to-[#FF6B00]/10 text-[#FF6B00] border border-[#F4A16C]/20'
-                            : 'text-foreground/80 hover:bg-[#F8F9FB] hover:text-[#1F2F78]'
+              {/* Career Services Accordion */}
+              <div>
+                <button
+                  onClick={() => setIsCareerOpen(!isCareerOpen)}
+                  className="w-full flex items-center justify-between text-sm font-bold py-2.5 px-3.5 rounded-xl text-slate-800 hover:bg-slate-50 text-left"
+                >
+                  <span className="flex items-center gap-2">
+                    <GraduationCap size={16} className="text-[#1a235c]" />
+                    Career Counselling
+                  </span>
+                  <ChevronDown size={18} className={`transition-transform duration-200 ${isCareerOpen ? 'rotate-180 text-[#F4A16C]' : 'text-slate-400'}`} />
+                </button>
+                {isCareerOpen && (
+                  <div className="pl-3 pr-1 py-1 space-y-0.5 bg-slate-50 rounded-xl my-1 border border-slate-100">
+                    {careerDropdownLinks.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block text-xs font-bold py-2 px-3 rounded-lg transition-colors ${
+                          pathname === item.href
+                            ? 'text-[#1a235c] bg-white shadow-xs'
+                            : 'text-slate-600 hover:text-[#1a235c] hover:bg-white/60'
                         }`}
+                        onClick={() => setIsOpen(false)}
                       >
-                        <span>{link.label}</span>
-                        <ChevronDown size={18} className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-[#FF6B00]' : 'text-slate-400'}`} />
-                      </button>
-                      
-                      {/* Expanded Mobile Sub-Menu */}
-                      <div className={`flex flex-col gap-1 pl-4 overflow-hidden transition-all duration-300 ${isMobileServicesOpen ? 'max-h-[350px] py-1 opacity-100' : 'max-h-0 py-0 opacity-0 pointer-events-none'}`}>
-                        <Link
-                          href="/services"
-                          className="text-[13px] font-bold py-2.5 px-4 rounded-xl text-[#1a235c] hover:bg-[#F8F9FB]"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          View All Services
-                        </Link>
-                        {servicesList.map((service) => (
-                          <Link
-                            key={service.href}
-                            href={service.href}
-                            className={`text-[13px] font-semibold py-2.5 px-4 rounded-xl transition-all border-l-2 ${
-                              pathname === service.href
-                                ? 'border-[#F4A16C] bg-slate-50 text-[#1a235c]'
-                                : 'border-transparent text-slate-500 hover:text-[#1a235c] hover:bg-[#F8F9FB]'
-                            }`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {service.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`text-[15px] font-bold py-3 px-4 rounded-xl transition-all ${
-                      pathname === link.href
-                        ? 'bg-gradient-to-br from-[#F4A16C]/10 to-[#FF6B00]/10 text-transparent bg-clip-text bg-gradient-to-r from-[#F4A16C] to-[#FF6B00] border border-[#F4A16C]/20'
-                        : 'text-foreground/80 hover:bg-[#F8F9FB] hover:text-[#1F2F78]'
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-              <Button asChild className="w-full h-14 rounded-xl text-[16px] font-bold bg-gradient-to-r from-[#F4A16C] to-[#FF6B00] hover:from-[#e38d58] hover:to-[#e66000] text-white mt-4 shadow-xl shadow-[#F4A16C]/30 border-0">
-                <a href="https://wa.me/919822258300?text=Hello%20MindMappers%20Team!%20%F0%9F%8C%9F%0A%0AI%20would%20like%20to%20book%20a%20session." target="_blank" rel="noopener noreferrer">
-                  Book Session
+              {/* Corporate Training */}
+              <Link
+                href="/corporate-training"
+                className={`flex items-center justify-between text-sm font-bold py-2.5 px-3.5 rounded-xl transition-colors ${
+                  pathname === '/corporate-training' ? 'bg-blue-50 text-[#1a235c]' : 'text-slate-800 hover:bg-slate-50'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="flex items-center gap-2">
+                  <Building2 size={16} className="text-[#1a235c]" />
+                  Corporate Training Programme
+                </span>
+                <span className="text-[10px] font-black uppercase bg-[#1a235c]/10 text-[#1a235c] px-2 py-0.5 rounded-full">
+                  10 Modules
+                </span>
+              </Link>
+
+              {/* Institutions */}
+              <Link
+                href="/institutions"
+                className={`flex items-center justify-between text-sm font-bold py-2.5 px-3.5 rounded-xl transition-colors ${
+                  pathname === '/institutions' ? 'bg-blue-50 text-[#1a235c]' : 'text-slate-800 hover:bg-slate-50'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                <span>For Schools, Colleges & Institutes</span>
+                <ArrowRight size={14} className="text-slate-400" />
+              </Link>
+
+              {/* Official Brochures */}
+              <Link
+                href="/brochures"
+                className={`flex items-center justify-between text-sm font-bold py-2.5 px-3.5 rounded-xl transition-colors ${
+                  pathname === '/brochures' ? 'bg-orange-50 text-[#1a235c]' : 'text-slate-800 hover:bg-slate-50'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="flex items-center gap-2">
+                  <FileText size={16} className="text-[#F4A16C]" />
+                  Official Brochures (PDF)
+                </span>
+                <span className="text-[10px] font-black uppercase bg-[#F4A16C]/15 text-[#F4A16C] px-2.5 py-0.5 rounded-full">
+                  Download
+                </span>
+              </Link>
+
+              {/* Founder Profile */}
+              <Link
+                href="/founder"
+                className={`flex items-center justify-between text-sm font-bold py-2.5 px-3.5 rounded-xl transition-colors ${
+                  pathname === '/founder' ? 'bg-blue-50 text-[#1a235c]' : 'text-slate-800 hover:bg-slate-50'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="flex items-center gap-2">
+                  <User size={16} className="text-[#1a235c]" />
+                  Founder: Prof. Dinesh Tathe
+                </span>
+                <ArrowRight size={14} className="text-slate-400" />
+              </Link>
+
+              {/* About MindMappers */}
+              <Link
+                href="/about"
+                className={`flex items-center justify-between text-sm font-bold py-2.5 px-3.5 rounded-xl transition-colors ${
+                  pathname === '/about' ? 'bg-blue-50 text-[#1a235c]' : 'text-slate-800 hover:bg-slate-50'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                <span>About MindMappers</span>
+                <ArrowRight size={14} className="text-slate-400" />
+              </Link>
+
+              {/* Contact & Centres */}
+              <Link
+                href="/contact"
+                className={`flex items-center justify-between text-sm font-bold py-2.5 px-3.5 rounded-xl transition-colors ${
+                  pathname === '/contact' ? 'bg-blue-50 text-[#1a235c]' : 'text-slate-800 hover:bg-slate-50'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                <span>Contact & Centres</span>
+                <ArrowRight size={14} className="text-slate-400" />
+              </Link>
+            </div>
+
+            {/* Quick Action Buttons */}
+            <div className="pt-3.5 space-y-2 pb-6">
+              <Button 
+                onClick={handleWhatsAppChat}
+                className="w-full h-11 rounded-xl bg-[#25D366] hover:bg-[#1fb855] text-white font-black text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2"
+              >
+                <MessageCircle size={17} /> Chat Directly on WhatsApp
+              </Button>
+
+              <Button 
+                onClick={() => { setIsOpen(false); setEnquiryModalOpen(true); }}
+                className="w-full h-11 rounded-xl bg-[#1a235c] hover:bg-[#3D57C5] text-white font-black text-xs uppercase tracking-wider shadow-md"
+              >
+                Book a Counselling Session
+              </Button>
+
+              <Button asChild variant="outline" className="w-full h-11 rounded-xl border-slate-200 text-slate-800 font-bold text-xs">
+                <a href="tel:+919822258300">
+                  <Phone size={14} className="mr-2 text-[#F4A16C]" /> Call Director: +91 9822258300
                 </a>
               </Button>
-            </div>
-          </nav>
-        )}
-        </div>
-      </div>
 
-      {/* Live Highlights Marquee Bar */}
-      <div className="relative z-40 w-full bg-gradient-to-r from-[#1a235c]/95 to-black/95 backdrop-blur-xl border-b border-white/10 overflow-hidden flex">
-        <div className="flex animate-marquee whitespace-nowrap py-1.5 sm:py-2 text-white/90 text-[11px] sm:text-[13px] font-bold tracking-widest hover:[animation-play-state:paused] cursor-default uppercase">
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex gap-8 sm:gap-16 px-4 sm:px-8 items-center min-w-max">
-              <span className="flex items-center gap-2"><Target size={14} className="text-[#F4A16C]"/> Book Your Career Assessment Today!</span>
-              <span className="flex items-center gap-2"><GraduationCap size={14} className="text-[#F4A16C]"/> Expert Counseling For Students & Parents</span>
-              <span className="flex items-center gap-2"><Sparkles size={14} className="text-[#F4A16C]"/> Discover Your True Potential</span>
-              <span className="flex items-center gap-2"><Lightbulb size={14} className="text-[#F4A16C]"/> Transform Confusion Into Clarity</span>
+              <p className="text-[10px] text-slate-400 text-center font-medium pt-1">
+                Pune • Satara • Chhatrapati Sambhajinagar • Nanded
+              </p>
             </div>
-          ))}
+
+          </div>
         </div>
-      </div>
-    </header>
+      )}
+
+      {/* Global WhatsApp Connected Enquiry Modal */}
+      <EnquiryModal 
+        isOpen={enquiryModalOpen}
+        onOpenChange={setEnquiryModalOpen}
+      />
+    </>
   );
 }

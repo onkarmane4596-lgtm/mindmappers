@@ -4,7 +4,7 @@ import { Play } from 'lucide-react';
 
 export function PodcastSection() {
   return (
-    <section className="py-10 md:py-16 relative overflow-hidden bg-[#f8fafc]">
+    <section className="py-10 md:py-16 relative overflow-hidden bg-[#f8fafc] w-full max-w-full" style={{ contain: 'paint' }}>
       {/* Subtle Background Accents */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#1a235c]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#F4A16C]/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
