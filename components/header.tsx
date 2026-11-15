@@ -63,12 +63,12 @@ export function Header() {
       <header className="sticky top-0 z-40 w-full bg-white shadow-xs">
         {/* Main Solid White Navigation Bar */}
         <div className="w-full bg-white border-b border-slate-200 border-t-[3px] border-t-[#F4A16C]">
-          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div className="flex h-16 sm:h-20 items-center justify-between gap-2 sm:gap-4">
+          <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-8 2xl:px-12">
+            <div className="flex h-16 sm:h-20 items-center justify-between gap-3 xl:gap-6 2xl:gap-8">
               
-              {/* Logo (Responsive, Never forces overflow) */}
-              <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink min-w-0 group py-1">
-                <div className="relative w-8 h-8 sm:w-11 sm:h-11 shrink-0 group-hover:scale-105 transition-transform duration-200">
+              {/* Logo (Guaranteed Never Squished or Truncated) */}
+              <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 py-1 group">
+                <div className="relative w-8 h-8 sm:w-10 sm:h-10 xl:w-11 xl:h-11 shrink-0 group-hover:scale-105 transition-transform duration-200">
                   <Image 
                     src="/logo/LOGO MINDMAPPERS.png" 
                     alt="MindMappers Logo" 
@@ -77,24 +77,24 @@ export function Header() {
                     priority
                   />
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-black text-[15px] sm:text-xl md:text-2xl tracking-tight leading-none truncate flex items-center">
+                <div className="flex flex-col shrink-0">
+                  <span className="font-black text-base sm:text-lg xl:text-xl 2xl:text-2xl tracking-tight leading-none flex items-center whitespace-nowrap">
                     <span className="text-[#1a235c]">Mind</span>
                     <span className="text-[#F4A16C]">Mappers</span>
-                    <span className="text-[9px] text-[#1a235c] align-super font-bold ml-0.5">®</span>
+                    <span className="text-[9px] sm:text-[10px] text-[#1a235c] align-super font-bold ml-0.5">®</span>
                   </span>
-                  <span className="text-[7.5px] sm:text-[9px] md:text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-0.5 sm:mt-1 truncate">
+                  <span className="text-[7.5px] sm:text-[8.5px] xl:text-[9.5px] 2xl:text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-0.5 sm:mt-1 whitespace-nowrap">
                     Career Counselling & Corporate
                   </span>
                 </div>
               </Link>
 
               {/* Desktop Navigation */}
-              <nav className="hidden lg:flex items-center h-full gap-5 xl:gap-7">
+              <nav className="hidden lg:flex items-center h-full gap-2 xl:gap-4 2xl:gap-6 shrink">
                 {/* Home */}
                 <Link
                   href="/"
-                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 ${
+                  className={`text-[11px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 whitespace-nowrap ${
                     pathname === '/' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
                   }`}
                 >
@@ -108,7 +108,7 @@ export function Header() {
                 <div className="relative group h-full flex items-center">
                   <Link
                     href="/services"
-                    className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative flex items-center gap-1 py-2 ${
+                    className={`text-[11px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative flex items-center gap-1 py-2 whitespace-nowrap ${
                       pathname.startsWith('/services') || pathname === '/iq-eq-test' || pathname === '/student-report'
                         ? 'text-[#1a235c]' 
                         : 'text-slate-600 hover:text-[#1a235c]'
@@ -144,14 +144,11 @@ export function Header() {
                 {/* Corporate Training */}
                 <Link
                   href="/corporate-training"
-                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 flex items-center gap-1.5 ${
+                  className={`text-[11px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 whitespace-nowrap ${
                     pathname === '/corporate-training' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
                   }`}
                 >
-                  <span>Corporate Training</span>
-                  <span className="bg-[#1a235c]/10 text-[#1a235c] text-[9px] font-black uppercase px-2 py-0.5 rounded-full">
-                    Vertical
-                  </span>
+                  Corporate Training
                   <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#1a235c] transition-all duration-200 ${
                     pathname === '/corporate-training' ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
                   }`} />
@@ -160,7 +157,7 @@ export function Header() {
                 {/* Institutions */}
                 <Link
                   href="/institutions"
-                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 ${
+                  className={`text-[11px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 whitespace-nowrap ${
                     pathname === '/institutions' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
                   }`}
                 >
@@ -173,11 +170,11 @@ export function Header() {
                 {/* Brochures View & Download */}
                 <Link
                   href="/brochures"
-                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 flex items-center gap-1 ${
+                  className={`text-[11px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 flex items-center gap-1 whitespace-nowrap ${
                     pathname === '/brochures' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
                   }`}
                 >
-                  <FileText size={14} className="text-[#F4A16C]" />
+                  <FileText size={13} className="text-[#F4A16C] hidden 2xl:inline" />
                   Brochures
                   <span className={`absolute -bottom-1 left-0 w-full h-[2.5px] rounded-full bg-[#F4A16C] transition-all duration-200 ${
                     pathname === '/brochures' ? 'scale-x-100' : 'scale-x-0 hover:scale-x-100'
@@ -187,7 +184,7 @@ export function Header() {
                 {/* About Us */}
                 <Link
                   href="/about"
-                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 ${
+                  className={`text-[11px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 whitespace-nowrap ${
                     pathname === '/about' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
                   }`}
                 >
@@ -200,7 +197,7 @@ export function Header() {
                 {/* Contact */}
                 <Link
                   href="/contact"
-                  className={`text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 ${
+                  className={`text-[11px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 relative py-2 whitespace-nowrap ${
                     pathname === '/contact' ? 'text-[#1a235c]' : 'text-slate-600 hover:text-[#1a235c]'
                   }`}
                 >
@@ -212,16 +209,16 @@ export function Header() {
               </nav>
 
               {/* Desktop CTAs (WhatsApp Connected) */}
-              <div className="hidden lg:flex items-center gap-3 shrink-0">
+              <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
                 <Button 
                   onClick={handleWhatsAppChat}
-                  className="h-10 px-4 rounded-full bg-[#25D366] hover:bg-[#1fb855] text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-1.5"
+                  className="h-9 xl:h-10 px-3 xl:px-4 rounded-full bg-[#25D366] hover:bg-[#1fb855] text-white font-bold text-[11px] xl:text-xs uppercase tracking-wider shadow-sm flex items-center gap-1.5 whitespace-nowrap shrink-0"
                 >
-                  <MessageCircle size={15} /> WhatsApp
+                  <MessageCircle size={15} /> <span>WhatsApp</span>
                 </Button>
                 <Button 
                   onClick={() => setEnquiryModalOpen(true)}
-                  className="h-10 px-5 rounded-full bg-[#1a235c] hover:bg-[#3D57C5] text-white font-bold text-xs uppercase tracking-wider shadow-sm"
+                  className="h-9 xl:h-10 px-3.5 xl:px-5 rounded-full bg-[#1a235c] hover:bg-[#3D57C5] text-white font-bold text-[11px] xl:text-xs uppercase tracking-wider shadow-sm whitespace-nowrap shrink-0"
                 >
                   Book Session
                 </Button>

@@ -69,7 +69,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-[92vh] lg:h-[92vh] flex flex-col justify-center overflow-hidden bg-white pt-20 sm:pt-28 pb-12 sm:pb-16 w-full max-w-full" style={{ contain: 'paint' }}>
+    <section className="relative min-h-[85vh] lg:h-[90vh] flex flex-col justify-center overflow-hidden bg-white pt-14 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 w-full max-w-full" style={{ contain: 'paint' }}>
 
       {/* Dynamic Background with Parallax (Clean Solid Overlays, NO Glassmorphism) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
@@ -101,21 +101,6 @@ export function HeroSection() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 flex flex-col items-center shrink-0">
-
-        {/* Top Tagline Badge (Solid White, NO Glassmorphism) */}
-        <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-6 text-center animate-fade-in">
-          <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#1a235c]">
-            MINDMAPPERS® CAREER COUNSELLING CENTRE
-          </span>
-          <span className="text-slate-300 hidden sm:inline">•</span>
-          <span className="text-[10px] sm:text-xs font-bold text-[#F4A16C]">
-            Shaping Your Best Version
-          </span>
-          <span className="text-slate-300 hidden md:inline">•</span>
-          <span className="text-[10px] sm:text-xs font-bold text-slate-500 hidden md:inline">
-            योग्य दिशा • आत्मविश्वास • उज्ज्वल भविष्य
-          </span>
-        </div>
 
         {/* Dynamic Rotating Headline */}
         <div key={textIndex} className="animate-in fade-in duration-700 slide-in-from-bottom-2 w-full text-center max-w-4xl mx-auto mb-8 sm:mb-10">
